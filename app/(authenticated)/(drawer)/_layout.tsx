@@ -8,18 +8,7 @@ const DrawerLayout = () => {
   return (
     <Drawer
       screenOptions={{
-        headerStyle: {
-          backgroundColor: Colors.background,
-        },
-        headerTintColor: "#fff",
-        headerRight: ({ tintColor }) => (
-          /*
-            Notice: You can use the 'replace' prop to replace the current route in navigation.
-          */
-          <Link href="/" replace style={{ marginRight: 20 }}>
-            <Ionicons name="log-out-outline" color={tintColor} size={24} />
-          </Link>
-        ),
+        headerShown: false,
         drawerActiveBackgroundColor: Colors.primary,
         drawerActiveTintColor: "#fff",
       }}

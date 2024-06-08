@@ -3,12 +3,30 @@ import { Ionicons } from "@expo/vector-icons";
 import { Link, Tabs } from "expo-router";
 import React from "react";
 import { router } from "expo-router";
+import { DrawerToggleButton } from "@react-navigation/drawer";
 
-const ProfileScreen = () => {
+const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
+        headerStyle: {
+          backgroundColor: Colors.background,
+        },
+        headerTintColor: "#fff",
+        headerLeft: ({ tintColor }) => (
+          /*
+            Notice: You can use the 'DrawerToggleButton' component to show burger button and toggle the drawer.
+          */
+          <DrawerToggleButton tintColor={tintColor} />
+        ),
+        headerRight: ({ tintColor }) => (
+          /*
+            Notice: You can use the 'replace' prop to replace the current route in navigation.
+          */
+          <Link href="/" replace style={{ marginRight: 20 }}>
+            <Ionicons name="log-out-outline" color={tintColor} size={24} />
+          </Link>
+        ),
       }}
     >
       <Tabs.Screen
@@ -43,8 +61,17 @@ const ProfileScreen = () => {
           },
         }}
       />
+
+      <Tabs.Screen
+        name="list"
+        options={{
+          headerShown: false,
+          tabBarLabel: "List",
+          tabBarIcon: (props) => <Ionicons name="list" {...props} />,
+        }}
+      />
     </Tabs>
   );
 };
 
-export default ProfileScreen;
+export default TabsLayout;

@@ -19,6 +19,18 @@ import RootPage from "./app/index";
 import DrawerLayout from "./app/(authenticated)/(drawer)/_layout";
 
 /*
+    1. Tab navigator example.
+    2. "tabPress" event to handle programatical tab press.
+    3. "DrawerToggleButton" component to show burger button and toggle the drawer.
+*/
+import TabsLayout from "./app/(authenticated)/(drawer)/(tabs)/_layout";
+
+/*
     1. 'DrawerActions.openDrawer()' method to open the drawer programmatically.
 */
 import Settings from "./app/(authenticated)/(drawer)/settings";
+
+/*
+    1. Use Stack navigator next to Tabs navigator to hide bottom tabs for Stack screens.
+*/
+import AuthenticatedStackLayout from "./app/(authenticated)/_layout";

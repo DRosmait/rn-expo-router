@@ -16,29 +16,35 @@ export {
 SplashScreen.preventAutoHideAsync();
 
 function InitialLayout() {
-  const [loaded, error] = useFonts({
+  const [fontLoaded, fontError] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
-    if (error) throw error;
-  }, [error]);
+    if (fontError) throw fontError;
+  }, [fontError]);
 
   useEffect(() => {
-    if (loaded) {
+    // Hide the splash screen when the font is loaded.
+    if (fontLoaded) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [fontLoaded]);
 
-  if (!loaded) {
+  if (!fontLoaded) {
     return null;
   }
 
   return (
     <>
       <StatusBar style="dark" />
+
+      {/* 
+        Notice: Each navigator (e.g. Stack) in _layout.tsx automatically find all screens in the same folder.
+        But to provide a custom configuration, you can use Screen components (e.g. Stack.Screen) to define the screen options.
+      */}
       <Stack
         screenOptions={{
           headerStyle: {
@@ -62,10 +68,18 @@ function InitialLayout() {
             headerBackTitle: "Back",
           }}
         />
+        {/* 
+          Notice: The `name` prop is a regular expression that matches the screen name.
+          You can group screens under a single route using (groupname) syntax.
+        */}
         <Stack.Screen
           name="(authenticated)/(drawer)"
           options={{ headerShown: false }}
         />
+        {/* 
+          Notice: You can use the `presentation` option to specify the presentation style.
+          For example, "modal" will present the screen modally.
+        */}
         <Stack.Screen
           name="modal"
           options={{ headerShown: false, presentation: "modal" }}
@@ -76,5 +90,6 @@ function InitialLayout() {
 }
 
 export default function RootLayout() {
+  // With this structure you can wrap the InitialLayout with any provider.
   return <InitialLayout />;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { Drawer } from "expo-router/drawer";
 import Colors from "@/constants/Colors";
 import { Link } from "expo-router";
@@ -14,6 +13,9 @@ const DrawerLayout = () => {
         },
         headerTintColor: "#fff",
         headerRight: ({ tintColor }) => (
+          /*
+            Notice: You can use the 'replace' prop to replace the current route in navigation.
+          */
           <Link href="/" replace style={{ marginRight: 20 }}>
             <Ionicons name="log-out-outline" color={tintColor} size={24} />
           </Link>

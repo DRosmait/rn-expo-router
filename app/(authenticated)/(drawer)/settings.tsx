@@ -7,6 +7,9 @@ const Settings = () => {
   const navigation = useNavigation();
 
   const openDrawer = () => {
+    /*
+      Notice: You can use the 'DrawerActions.openDrawer()' method to open the drawer programmatically.
+    */
     navigation.dispatch(DrawerActions.openDrawer());
   };
 

@@ -2,9 +2,12 @@ import Colors from "@/constants/Colors";
 import { Link } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Page() {
+export default function RootPage() {
   return (
     <View style={styles.container}>
+      {/*
+        Notice: 'asChild' prop is used to work with child components.
+      */}
       <Link href="/register" asChild>
         <TouchableOpacity>
           <Text style={{ color: "#fff" }}>Register</Text>
@@ -17,6 +20,9 @@ export default function Page() {
         </TouchableOpacity>
       </Link>
 
+      {/* 
+        Notice: You can use the 'replace' prop to replace the current route in navigation.
+      */}
       <Link href="(authenticated)/(tabs)/home" asChild replace>
         <TouchableOpacity>
           <Text style={{ color: "#fff" }}>Login</Text>

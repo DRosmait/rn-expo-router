@@ -9,6 +9,15 @@ const AuthenticatedStackLayout = () => {
      */
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="details/[id]" options={{ title: "Authenticated" }} />
+
+      {/* 
+          Notice: You can use the `presentation` option to specify the presentation style.
+          For example, "modal" will present the screen modally.
+        */}
+      <Stack.Screen
+        name="modal"
+        options={{ headerShown: false, presentation: "modal" }}
+      />
     </Stack>
   );
 };

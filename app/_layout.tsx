@@ -97,14 +97,6 @@ function InitialLayout() {
           You can group screens under a single route using (groupname) syntax.
         */}
         <Stack.Screen name="(authenticated)" options={{ headerShown: false }} />
-        {/* 
-          Notice: You can use the `presentation` option to specify the presentation style.
-          For example, "modal" will present the screen modally.
-        */}
-        <Stack.Screen
-          name="modal"
-          options={{ headerShown: false, presentation: "modal" }}
-        />
       </Stack>
     </>
   );

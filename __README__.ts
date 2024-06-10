@@ -34,6 +34,6 @@ import Settings from "./app/(authenticated)/(drawer)/settings";
 
 /*
     1. Use Stack navigator next to Tabs navigator to hide bottom tabs for Stack screens.
+    2. Use 'presentation' option to specify 'modal' presentation style for a screen.
 */
 import AuthenticatedStackLayout from "./app/(authenticated)/_layout";
-

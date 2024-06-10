@@ -1,10 +1,12 @@
 import Colors from "@/constants/Colors";
+import { AuthProvider, useAuth } from "@/context/AuthContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Slot, Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
+import { ActivityIndicator, View } from "react-native";
 import "react-native-reanimated";
 
 export {
@@ -21,6 +23,11 @@ function InitialLayout() {
     ...FontAwesome.font,
   });
 
+  const { token, initialized } = useAuth();
+  const router = useRouter();
+  // Get the current route segments to check path parts.
+  const segments = useSegments();
+
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (fontError) throw fontError;
@@ -33,8 +40,25 @@ function InitialLayout() {
     }
   }, [fontLoaded]);
 
-  if (!fontLoaded) {
-    return null;
+  /**
+   * Notice: To prevent navigation to (authenticated) for unlogged user we need to check if the token is present.
+   * If the token is present but the app isn't in (authenticated) route group, we redirect user to the (authenticated) route.
+   * If the token is not present and the app is in (authenticated) route, we redirect user to the "/" login route.
+   */
+  useEffect(() => {
+    if (!initialized) return;
+
+    const isInAuthGroup = segments[0] === "(authenticated)";
+
+    if (token && !isInAuthGroup) {
+      router.replace("/(authenticated)/(drawer)/(tabs)/home");
+    } else if (!token && isInAuthGroup) {
+      router.replace("/");
+    }
+  }, [initialized, token, segments]);
+
+  if (!fontLoaded || !initialized) {
+    return <Slot />;
   }
 
   return (
@@ -88,5 +112,9 @@ function InitialLayout() {
 
 export default function RootLayout() {
   // With this structure you can wrap the InitialLayout with any provider.
-  return <InitialLayout />;
+  return (
+    <AuthProvider>
+      <InitialLayout />
+    </AuthProvider>
+  );
 }

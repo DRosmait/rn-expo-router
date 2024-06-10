@@ -1,11 +1,15 @@
 import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import { Link, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 import React from "react";
 import { router } from "expo-router";
 import { DrawerToggleButton } from "@react-navigation/drawer";
+import { TouchableOpacity } from "react-native";
+import { useAuth } from "@/context/AuthContext";
 
 const TabsLayout = () => {
+  const { onLogout } = useAuth();
+
   return (
     <Tabs
       screenOptions={{
@@ -23,9 +27,9 @@ const TabsLayout = () => {
           /*
             Notice: You can use the 'replace' prop to replace the current route in navigation.
           */
-          <Link href="/" replace style={{ marginRight: 20 }}>
+          <TouchableOpacity onPress={onLogout} style={{ marginRight: 20 }}>
             <Ionicons name="log-out-outline" color={tintColor} size={24} />
-          </Link>
+          </TouchableOpacity>
         ),
       }}
     >

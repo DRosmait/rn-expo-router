@@ -1,3 +1,5 @@
+// Expo Router
+
 /*
     1. Navigation with Expo Router.
     2. Groued screens with (groupname).
@@ -34,3 +36,4 @@ import Settings from "./app/(authenticated)/(drawer)/settings";
     1. Use Stack navigator next to Tabs navigator to hide bottom tabs for Stack screens.
 */
 import AuthenticatedStackLayout from "./app/(authenticated)/_layout";
+

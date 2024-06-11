@@ -3,5 +3,5 @@
 ## Installation
 
 - clone the project
-- install dependencies with `yanr`
+- install dependencies with `yarn`
 - run the project with `yarn start`
